@@ -46,7 +46,7 @@ using a shader file z_buf.sha, which must be located in the same directory as th
 When stereo images are being generated, a single depth map is produced that represents the view in-between the left
 and right eyes.
 
-### limitations
+### Limitations
 1. Some aspects of this program are hard-coded, such as the background model that is used and its size and scale.
 Additionally, all images are hard-coded to be saved as .bmp files, but Panda3D can output other formats as well.
 2. Currently there is nothing stopping models from being generated on top of/inside of previously placed models.
