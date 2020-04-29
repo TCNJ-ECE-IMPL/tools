@@ -14,9 +14,6 @@
 #  the user, the default panda model will be used.
 #
 ########################################################################################################################
-from direct.showbase.ShowBase import ShowBase
-from direct.task import Task
-from direct.filter.FilterManager import FilterManager
 from panda3d.core import WindowProperties, GraphicsOutput, Texture, NodePath
 from panda3d.core import Filename, PNMImage, Camera, Shader
 from panda3d.core import DirectionalLight, AmbientLight
@@ -25,13 +22,19 @@ from math import log10, ceil
 from time import sleep
 import random, sys, os, argparse
 
+# Note: any programmatic changes to Panda3D config file
+# need to be done before ShowBase is imported
+from direct.showbase.ShowBase import ShowBase
+from direct.task import Task
+from direct.filter.FilterManager import FilterManager
+
 ''' Panda3D application class '''
 class ImageGenerator(ShowBase):
     def __init__(self, num_imgs, models_per_img, img_wid, img_hgt, model_path, out_dir_path, stereo, eye_sep, depth, verbose):
-        ShowBase.__init__(self)  #Initialize the application window               
+        ShowBase.__init__(self)  #Initialize the application window
         self.num_imgs = num_imgs #Number of images to generate
         self.width = img_wid     #Picture dimensions
-        self.height = img_hgt    
+        self.height = img_hgt
         self.num_models = models_per_img  #Number of models to generate in scene for each image
         self.model_path = model_path      #Path to model to render in the scene
         self.models = []                  #List of models currently being rendered
@@ -68,7 +71,7 @@ class ImageGenerator(ShowBase):
         props.setSize(self.width, self.height)
         base.win.requestProperties(props)
         base.graphicsEngine.renderFrame() #render next frame to resize window
-                    
+
         base.disableMouse() #IMPORTANT: must do this to enable custom camera positioning (otherwise camera is controlled by mouse)
 
         self.placeBackground("models/environment")  #Default background model is 'environment'              
