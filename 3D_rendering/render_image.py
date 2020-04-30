@@ -192,7 +192,7 @@ if __name__ == "__main__":
     parser.add_argument("-v", "--verbose", help="print full console output", action="store_true")
     parser.add_argument("-d", "--depth_map", help="output a depth map of the generated image(s)", action="store_true")
     parser.add_argument("-s", "--stereo", help="generate two stereo images based on a given eye separation", action="store_true")    
-    parser.add_argument("--eye_sep", help="distance of separation between two stereo images", metavar="EYE_SEPARATION", type=int, default=2)
+    parser.add_argument("--eye_sep", help="distance of separation between two stereo images", metavar="EYE_SEPARATION", type=float, default=2.0)
     parser.add_argument("images_to_generate", help="number of images to generate", type=int)
     parser.add_argument("models_per_image", help="number of 3d models to render per generated image", type=int)
     parser.add_argument("--image_width", help="width in pixels of generated image (default 800)", type=int, default=800)
