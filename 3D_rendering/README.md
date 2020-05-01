@@ -77,7 +77,7 @@ In this case, Panda3D cannot generate its graphics window on your system. The ab
 
 * The other message indicated by `:display(error):` is an error related to your system's graphics driver. To fix the issue, your options are to install a different OpenGL driver, or to edit the Panda3D config file, `Config.prc`, which is located at the install location of Panda3D on your system under the `etc/` directory. If your graphics driver doesn't support OpenGL and you don't want to update it, you can set the software renderer "tinydisplay" as a fallback renderer in `Config.prc`. Try doing the following:
 
-   1. Find the install location of Panda3D on your machine. If you installed with PIP, it should be located with your python install at the path `site-packages/panda3d/.
+   1. Find the install location of Panda3D on your machine. If you installed with PIP, it should be located with your Python install at the path `site-packages/panda3d/`.
    2. Open `etc/Config.prc` with a text editor
    3. Locate the following section:
    ```bash
