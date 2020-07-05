@@ -20,7 +20,7 @@ from panda3d.core import DirectionalLight, AmbientLight
 
 from math import log10, ceil
 from time import sleep
-import random, sys, os, argparse
+import random, sys, os, argparse, errno
 
 # Note: any programmatic changes to Panda3D config file
 # need to be done before ShowBase is imported
@@ -59,13 +59,17 @@ class ImageGenerator(ShowBase):
     
         leading_zeros = str(ceil(log10(self.num_imgs)))   #Number of leading zeros to use in output image filenames                
         
-        ''' Create a directory for generated images '''       
-        if (self.out_dir in os.listdir()) == False:  #Check if directory already exists
-            if self.verbose: print("Creating output directory: {}".format(self.out_dir))
-            os.mkdir(self.out_dir)
-        else:
-            if self.verbose: print("Warning: output directory {} already exists".format(self.out_dir))
-            
+        ''' Create a directory for generated images '''
+        print("Creating output directory: {}".format(self.out_dir))        
+        try:
+            os.makedirs(self.out_dir)  #Try creating a directory
+        except OSError as e:
+            if e.errno != errno.EEXIST:
+                raise
+            else:
+                #If dir already exists, ignore the exception and continue
+                if self.verbose: print("Warning: output directory {} already exists".format(self.out_dir))
+        
         ''' Resize image '''
         props = WindowProperties()
         props.setSize(self.width, self.height)
