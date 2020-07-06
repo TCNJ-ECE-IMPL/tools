@@ -131,8 +131,7 @@ class ImageGenerator(ShowBase):
     def placeModel(self, model_name, model_num=None, verbose=None):        
         model = self.loader.loadModel(model_name)     #Load model from path indicated by model_name
         if model_num is not None:                     #Optionally append a number to the name of the model
-            model.name = model_name + "_{:02d}".format(model_num)
-            if verbose: print("\tPlacing model {:s}".format(model.name))
+            model.name = model_name + "_{:02d}".format(model_num)            
         model.reparentTo(self.render)                 #Allow this model to show up in the scene when the scene is rendered
         
         ''' Adjust scale of model to fit within background scene '''
@@ -151,6 +150,8 @@ class ImageGenerator(ShowBase):
         pos_x = random.uniform(self.x_lower_lim, self.x_upper_lim) #Get random number to adjust "left to right" placement of model
         pos_y = random.uniform(self.y_lower_lim, self.y_upper_lim) #Get random number to adjust depth of model in the image (lower -> closer to camera)
         model.setPos(pos_origin + pos_x, pos_origin + pos_y, self.object_height)    #Set the position of the model in the scene
+        
+        if verbose: print("\tPlacing model {:s} \tPos: {}\tScale: {}".format(model.name, model.getPos(), model.getScale()))
         
         self.models.append(model)   #Add this model to the list of models in the scene
     
