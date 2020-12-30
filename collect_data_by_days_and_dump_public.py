@@ -1,3 +1,5 @@
+# Adapted from the original R version, which was written by Kevin Kranen
+
 # Semi automatic scraping - user:
 #   selects dates
 #   sets Sense user name
